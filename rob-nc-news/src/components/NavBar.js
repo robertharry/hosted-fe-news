@@ -17,19 +17,6 @@ const NavBar = () => {
 
 
 export default NavBar;
-    // class NavBar extends Component {
-    //     render() {
-    //         return (
-    //             <div className='navbar'>
-    //                 <nav>
-    //             <Link to='/'>Home</Link>
-    //             <Link to='/articles'>Articles</Link>
-    //             <Link to='/topics'>View all topics</Link>
-    //                 </nav>
-    //             </div>
-    //         );
-    //     }
-    // }
 
 //     <nav className="navbar navbar-expand-lg navbar-light bg-dark"> 
 //   <a className="navbar-brand" href="#"></a>
