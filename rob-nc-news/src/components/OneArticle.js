@@ -9,7 +9,7 @@ class OneArticle extends Component {
     }
     render() {
         const {isLoading, article} =this.state
-        if(isLoading) return '...Loading'
+        if(isLoading) return <p>Loading</p>
         return (
             <div>
                 <h2>{article.title}</h2>
