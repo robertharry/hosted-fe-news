@@ -6,7 +6,7 @@ class Articles extends Component {
     }
     render() {
         return (
-            <div>
+            <div className='mainPage'>
                <h2>articles page 'n that</h2> 
             </div>
         );

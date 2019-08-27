@@ -6,8 +6,8 @@ const Header = () => {
         <>
         <header className="App-header">
         <h1>NC NEWS</h1>
+       <NavBar className="navbar"/>
        </header>
-       <NavBar/>
 </>
     );
 };
