@@ -4,6 +4,7 @@ import { Link } from '@reach/router'
 
 class Articles extends Component {
     state = {
+        sort_by: '',
         order: 'desc',
         articles: [],
         isLoading: true
@@ -14,13 +15,16 @@ class Articles extends Component {
         return (
             <div className='mainPage'>
                 <h2>Click on an article you would like to read...</h2>
-                <h3> Sort by: <button onClick={this.handleDateClick}>Date Created</button></h3>
+                <h4> Sort by: <button name='created_at' onClick={this.handleClick}>Date Created</button> 
+                <button name='comment_count' onClick={this.handleClick}>Number of comments</button>
+                <button name='votes' onClick={this.handleClick}>Number of votes</button></h4>
                 {articles.map(article => {
                     return <ul key={article.article_id}>
                         <Link to={`/articles/${article.article_id}`}>
                         <p>{article.title}</p>
                         <p>{article.created_at}</p>
-                        <p>{article.comment_count}</p>
+                        <p>Comments: {article.comment_count}</p>
+                        <p>Votes: {article.votes}</p>
                         </Link>
                     </ul>
                 })}
@@ -28,8 +32,10 @@ class Articles extends Component {
         );
     }
     componentDidUpdate(prevProps, prevState) {
-        if (this.props.topic !== prevProps.topic || this.state.order !== prevState.order) {
-            api.fetchAllArticles(this.props.topic, this.state.order)
+        const {topic} = this.props
+        const {order, sort_by} = this.state
+        if (topic !== prevProps.topic || order !== prevState.order || sort_by !== prevState.sort_by) {
+            api.fetchAllArticles(topic, order, sort_by)
                 .then(articles => {
                     this.setState({ articles, isLoading: false })
                 })
@@ -41,13 +47,16 @@ class Articles extends Component {
                 this.setState({ articles, isLoading: false })
             })
     }
-    handleDateClick = (event) => {
-        event.preventDefault()
-        if(this.state.order === 'desc'){
-            this.setState({order:'asc'})
-        } else  {
-            this.setState({order: 'desc'})
-        }
+    handleClick = (event) => {
+       if(this.state.sort_by === event.target.name){
+           if(this.state.order === 'asc'){
+               this.setState({order:'desc'})
+           }else {
+               this.setState({order:'asc'})
+           }
+       } else {
+           this.setState({sort_by:event.target.name})
+       }
     }
 }
 
