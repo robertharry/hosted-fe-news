@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios'
+import * as api from '../utils/api'
 
 
 class Comments extends Component {
@@ -29,23 +29,16 @@ class Comments extends Component {
     }
     componentDidUpdate(prevProps, prevState){
         if(prevState.comments !== this.state.comments){
-            this.fetchOneArticle()
+            api.fetchOneArticle(this.props.article_id)
+            .then(article => {
+                this.setState({article, isLoading:false})
+            })
         }
     }
     componentDidMount() {
-        this.fetchAllComments()
-    }
-    fetchAllComments = () => {
-        axios.get(`https://robs-nc-news.herokuapp.com/api/articles/${this.props.article_id}/comments`)
-            .then(({ data }) => {
-                this.setState({comments:data.comments, isLoading:false})
-            })
-    }
-    fetchOneArticle = () => {
-        axios.get(`https://robs-nc-news.herokuapp.com/api/articles/${this.props.article_id}`)
-        .then(({data}) => {
-            // console.log(data, 'data')
-            this.setState({article:data.article, isLoading:false})
+        api.fetchAllComments(this.props.article_id)
+        .then(comments => {
+            this.setState({comments, isLoading:false})
         })
     }
 }

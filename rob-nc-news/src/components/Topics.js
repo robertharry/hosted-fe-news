@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import axios from 'axios'
-import {Link} from '@reach/router'
+import { Link } from '@reach/router'
+import * as api from '../utils/api'
 
 class Topics extends Component {
-    state= {
-        isLoading: true, 
+    state = {
+        isLoading: true,
         topics: null
     }
     render() {
-        const {isLoading, topics} = this.state
-        if(isLoading) return '...Loading'
+        const { isLoading, topics } = this.state
+        if (isLoading) return '...Loading'
         return (
             <div className='mainPage'>
                 <h3>Click on a topic to see related articles</h3>
@@ -21,14 +21,11 @@ class Topics extends Component {
             </div>
         );
     }
-    componentDidMount(){
-        this.fetchAllTopics()
-    }
-    fetchAllTopics = () => {
-        axios.get('https://robs-nc-news.herokuapp.com/api/topics')
-        .then(({data}) => {
-            this.setState({topics:data.topics, isLoading:false})
-        })
+    componentDidMount() {
+        api.fetchAllTopics()
+            .then(topics => {
+                this.setState({ topics, isLoading: false })
+            })
     }
 }
 
