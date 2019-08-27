@@ -15,9 +15,9 @@ class Articles extends Component {
         return (
             <div className='mainPage'>
                 <h2>Click on an article you would like to read...</h2>
-                <h4> Sort by: <button name='created_at' onClick={this.handleClick}>Date Created</button> 
-                <button name='comment_count' onClick={this.handleClick}>Number of comments</button>
-                <button name='votes' onClick={this.handleClick}>Number of votes</button></h4>
+                <form onClick={this.handleClick}> Sort by: <button name='created_at'>Date Created</button> 
+                <button name='comment_count' >Number of comments</button>
+                <button name='votes' >Number of votes</button></form>
                 {articles.map(article => {
                     return <ul key={article.article_id}>
                         <Link to={`/articles/${article.article_id}`}>
@@ -48,6 +48,7 @@ class Articles extends Component {
             })
     }
     handleClick = (event) => {
+        event.preventDefault()
        if(this.state.sort_by === event.target.name){
            if(this.state.order === 'asc'){
                this.setState({order:'desc'})
