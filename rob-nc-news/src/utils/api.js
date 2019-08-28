@@ -47,3 +47,12 @@ export const postComment = (username, body, article_id) => {
 export const deleteComment = (comment_id) => {
     return axios.delete(`${baseURL}/comments/${comment_id}`)
 }
+
+export const patchVote = (value, article_id) => {
+    return axios.patch(`${baseURL}/articles/${article_id}`, {
+        inc_votes: value
+    })
+    .then(({data}) => {
+        return data.article
+    }) //needed??
+}

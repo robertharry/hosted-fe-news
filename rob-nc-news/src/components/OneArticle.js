@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import {Link} from '@reach/router'
 import * as api from '../utils/api'
+import Voting from './Voting';
 
 class OneArticle extends Component {
     state = {
+        voteChange: 0,
         isLoading: true,
         article: null
     }
@@ -17,7 +19,7 @@ class OneArticle extends Component {
                 <p>Topic: {article.topic}</p>
                 <p>Written on: {article.created_at}</p>
                 <p>{article.body}</p>
-                <p>Votes: {article.votes}</p>
+                <Voting votes={article.votes} article_id={article.article_id}/>
                 <Link to={`/comments/${article.article_id}`}>See all comments({article.comment_count})</Link>
                 <br></br>
                 <Link to='/articles'>Back to all articles&nbsp;</Link>
@@ -30,6 +32,17 @@ class OneArticle extends Component {
             this.setState({article, isLoading:false})
         })
     }
+    // handleClick = (event) => {
+    //     event.preventDefault()
+    //     const {value} = event.target
+    //     const {article_id} = this.state.article
+    //     this.setState(({voteChange}) => {
+    //         return {
+    //             voteChange: voteChange + +value
+    //         }
+    //     })
+    //     api.patchVote(value, article_id)
+    // }
 }
 
 export default OneArticle;

@@ -10,7 +10,7 @@ class Comments extends Component {
         article: null
     }
     render() {
-        const { isLoading, comments, article } = this.state
+        const { isLoading, comments, article, body } = this.state
         const {username} = this.props
         if (comments === null || article === null) return <p>Loading</p>
         if (isLoading) return <p>Loading</p>
@@ -19,7 +19,7 @@ class Comments extends Component {
                 <h2>Comments for {article.title}</h2>
                 <br></br>
                 <form onSubmit={this.handleSubmit}>
-                    <label>Post a comment as '{username}' here:<input type="text" name="body" onChange={this.handleChange} /></label>
+                    <label>Post a comment as '{username}' here:<input type="text" name="body" onChange={this.handleChange} value={body}/></label>
                     <button className="submit" type="submit"> Submit </button>
                 </form>
                 {comments.map(comment => {
