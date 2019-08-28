@@ -10,21 +10,39 @@ import OneArticle from './components/OneArticle'
 import Comments from './components/Comments'
 import Errors from './utils/errors'
 
-function App() {
-  return (
-    <div className="App">
-      <Header/>
-      <Router>
-        <Home path='/' />
-        <Articles path='/articles' />
-        <Articles path='/topics/:topic' />
-        <Topics path='/topics' />
-        <OneArticle path='/articles/:article_id' />
-        <Comments path='/comments/:article_id' />
-        <Errors default />
-      </Router>
-    </div>
-  );
+class App extends React.Component {
+  state={
+    username:"jessjelly"
+  }
+  render(){
+    return (
+      <div className="App">
+      <p className= "username"> Logged in as '{this.state.username}'. 
+      <form onSubmit={this.handleSubmit}>
+      Choose new user from dropdown list: 
+      <select value={this.state.username} onChange={this.handleChange}>
+        <option value="jessjelly">jessjelly</option>
+        <option value="happyamy2016">happyamy2016</option>
+        <option value="cooljmessy">cooljmessy</option>
+      </select>
+      </form>
+      </p>
+        <Header/>
+        <Router>
+          <Home path='/' />
+          <Articles path='/articles' />
+          <Articles path='/topics/:topic' />
+          <Topics path='/topics' />
+          <OneArticle path='/articles/:article_id' />
+          <Comments path='/comments/:article_id' username={this.state.username}/>
+          <Errors default />
+        </Router>
+      </div>
+    );
+  }
+  handleChange = (event) => {
+    this.setState({username:event.target.value})
+  }
 }
 
 export default App;

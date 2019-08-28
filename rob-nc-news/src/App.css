@@ -1,6 +1,9 @@
 .App {
   text-align: center;
 }
+.username{
+  text-align: left
+}
 .navbar1{
   display: -webkit-inline-flex;
   flex-direction: row;

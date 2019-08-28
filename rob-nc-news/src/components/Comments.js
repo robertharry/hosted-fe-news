@@ -4,7 +4,6 @@ import * as api from '../utils/api'
 
 class Comments extends Component {
     state = {
-        username: "jessjelly",
         body: "",
         isLoading: true,
         comments: null,
@@ -12,14 +11,15 @@ class Comments extends Component {
     }
     render() {
         const { isLoading, comments, article } = this.state
-        if (article === null) return <p>Loading</p>
+        const {username} = this.props
+        if (comments === null || article === null) return <p>Loading</p>
         if (isLoading) return <p>Loading</p>
         return (
             <div>
                 <h2>Comments for {article.title}</h2>
                 <br></br>
                 <form onSubmit={this.handleSubmit}>
-                    <label>Post a comment as "username" here:<input type="text" name="body" onChange={this.handleChange} /></label>
+                    <label>Post a comment as '{username}' here:<input type="text" name="body" onChange={this.handleChange} /></label>
                     <button className="submit" type="submit"> Submit </button>
                 </form>
                 {comments.map(comment => {
@@ -27,7 +27,7 @@ class Comments extends Component {
                         <p>{comment.body}</p>
                         <p>Author: {comment.author}</p>
                         <p>Votes: {comment.votes}</p>
-                        <button onClick={() => this.removeComment(comment.author, comment.comment_id)}>DELETE</button>
+                        {username === comment.author && <button onClick={() => this.removeComment(comment.comment_id)}>DELETE</button>}
                     </ul>
                 })}
 
@@ -52,8 +52,8 @@ class Comments extends Component {
     }
     handleSubmit = (event) => {
         event.preventDefault()
-        const { username, body } = this.state
-        const { article_id } = this.props
+        const { body } = this.state
+        const { username, article_id } = this.props
         api.postComment(username, body, article_id)
             .then(comment => {
                 this.setState(({ comments }) => {
@@ -65,7 +65,7 @@ class Comments extends Component {
                 })
             })
     }
-    removeComment = (author, comment_id) => {
+    removeComment = (comment_id) => {
         api.deleteComment(comment_id)
             .then(() => {
                 this.setState(({comments}) => {
