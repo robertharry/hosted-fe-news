@@ -4,7 +4,7 @@ import * as api from '../utils/api'
 
 class Comments extends Component {
     state = {
-        username:"jessjelly",
+        username: "jessjelly",
         body: "",
         isLoading: true,
         comments: null,
@@ -27,25 +27,21 @@ class Comments extends Component {
                         <p>{comment.body}</p>
                         <p>Author: {comment.author}</p>
                         <p>Votes: {comment.votes}</p>
-                        <button onClick={()=>this.removeComment(comment.author, comment.comment_id)}>DELETE</button>
+                        <button onClick={() => this.removeComment(comment.author, comment.comment_id)}>DELETE</button>
                     </ul>
                 })}
 
             </div>
         );
     }
-    componentDidUpdate(prevProps, prevState) {
-        if (prevState.comments !== this.state.comments) {
-            api.fetchOneArticle(this.props.article_id)
-                .then(article => {
-                    this.setState({ article, isLoading: false })
-                })
-        }
-    }
     componentDidMount() {
         api.fetchAllComments(this.props.article_id)
             .then(comments => {
                 this.setState({ comments, isLoading: false })
+            })
+        api.fetchOneArticle(this.props.article_id)
+            .then(article => {
+                this.setState({ article, isLoading: false })
             })
     }
     handleChange = (event) => {
@@ -56,24 +52,27 @@ class Comments extends Component {
     }
     handleSubmit = (event) => {
         event.preventDefault()
-        const {username, body} = this.state
-        const {article_id} = this.props
+        const { username, body } = this.state
+        const { article_id } = this.props
         api.postComment(username, body, article_id)
-        .then(comment => {
-            this.setState(({comments}) => {
-                return {
-                    comments: [comment,...comments],
-                    body:""
-        
-                }
+            .then(comment => {
+                this.setState(({ comments }) => {
+                    return {
+                        comments: [comment, ...comments],
+                        body: ""
+
+                    }
+                })
             })
-        })
     }
     removeComment = (author, comment_id) => {
-        if(author === this.state.username){
-            api.deleteComment(comment_id)
+        api.deleteComment(comment_id)
+            .then(() => {
+                this.setState(({comments}) => {
+                    return {comments: comments.filter(comment => comment.comment_id !== comment_id)}
+                })
+            })
 
-        }
     }
 }
 
