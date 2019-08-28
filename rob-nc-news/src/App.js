@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Router} from '@reach/router'
+import { Router } from '@reach/router'
 import Header from './components/Header';
 import Home from './components/Home'
 import Articles from './components/Articles';
@@ -9,39 +9,32 @@ import Topics from './components/Topics';
 import OneArticle from './components/OneArticle'
 import Comments from './components/Comments'
 import Errors from './utils/errors'
+import LoginBar from './components/LoginBar';
 
 class App extends React.Component {
-  state={
-    username:"jessjelly"
+  state = {
+    username: "jessjelly"
   }
-  render(){
+  render() {
+    const { username } = this.state
     return (
       <div className="App">
-      <p className= "username"> Logged in as '{this.state.username}'. 
-      <form onSubmit={this.handleSubmit}>
-      Choose new user from dropdown list: 
-      <select value={this.state.username} onChange={this.handleChange}>
-        <option value="jessjelly">jessjelly</option>
-        <option value="happyamy2016">happyamy2016</option>
-        <option value="cooljmessy">cooljmessy</option>
-      </select>
-      </form>
-      </p>
-        <Header/>
+        <LoginBar handleChange={this.handleChange} username={username} />
+        <Header />
         <Router>
           <Home path='/' />
           <Articles path='/articles' />
           <Articles path='/topics/:topic' />
           <Topics path='/topics' />
           <OneArticle path='/articles/:article_id' />
-          <Comments path='/comments/:article_id' username={this.state.username}/>
+          <Comments path='/comments/:article_id' username={username} />
           <Errors default />
         </Router>
       </div>
     );
   }
   handleChange = (event) => {
-    this.setState({username:event.target.value})
+    this.setState({ username: event.target.value })
   }
 }
 
