@@ -34,3 +34,19 @@ export const fetchAllComments = (article_id) => {
         return data.comments
     })
 }
+
+export const postComment = (username, body, article_id) => {
+    return axios.post(`${baseURL}/articles/${article_id}/comments`, {
+        username, body
+    })
+    .then(({data}) => {
+        return data.comment
+    })
+}
+
+export const deleteComment = (comment_id) => {
+    return axios.delete(`${baseURL}/comments/${comment_id}`)
+    .then(()=>{
+        console.log('success!')
+    })
+}
