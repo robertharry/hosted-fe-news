@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as api from '../utils/api'
+import Voting from './Voting';
 
 
 class Comments extends Component {
@@ -26,7 +27,7 @@ class Comments extends Component {
                     return <ul className='indvComment' key={comment.comment_id}>
                         <p>{comment.body}</p>
                         <p>Author: {comment.author}</p>
-                        <p>Votes: {comment.votes}</p>
+                        <Voting votes={comment.votes} comment_id={comment.comment_id}/>
                         {username === comment.author && <button onClick={() => this.removeComment(comment.comment_id)}>DELETE</button>}
                     </ul>
                 })}

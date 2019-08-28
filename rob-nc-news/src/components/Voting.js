@@ -4,6 +4,7 @@ import * as api from '../utils/api'
 class Voting extends Component {
     state = {
         article_id: this.props.article_id,
+        comment_id: this.props.comment_id,
         votes: this.props.votes,
         voteChange: 0
     }
@@ -22,13 +23,18 @@ class Voting extends Component {
     handleClick = (event) => {
         event.preventDefault()
         const {value} = event.target
-        const {article_id} = this.state
+        const {article_id, comment_id} = this.state
+        // console.log(article_id, '<--- article', comment_id, '<-- comment')
         this.setState(({voteChange}) => {
             return {
                 voteChange: voteChange + +value
             }
         })
-        api.patchVote(value, article_id)
+        if(article_id){
+            api.patchArticleVote(value, article_id)
+        } else {
+            api.patchCommentVote(value, comment_id)
+        }
     }
 }
 
