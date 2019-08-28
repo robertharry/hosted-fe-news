@@ -17,7 +17,7 @@ class OneArticle extends Component {
                 <h2>{article.title}</h2>
                 <p>Author: {article.author}</p>
                 <p>Topic: {article.topic}</p>
-                <p>Written on: {article.created_at}</p>
+                <p>Written on: {new Date(article.created_at).toLocaleDateString()}</p>
                 <p>{article.body}</p>
                 <Voting votes={article.votes} article_id={article.article_id}/>
                 <Link to={`/comments/${article.article_id}`}>See all comments({article.comment_count})</Link>

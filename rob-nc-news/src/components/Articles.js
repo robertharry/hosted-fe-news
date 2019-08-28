@@ -22,7 +22,7 @@ class Articles extends Component {
                     return <ul /*className='indvArticle'*/ key={article.article_id}>
                         <Link to={`/articles/${article.article_id}`}>
                         <p>{article.title}</p>
-                        <p>{article.created_at}</p>
+                        <p>{new Date(article.created_at).toLocaleDateString()}</p>
                         <p>Comments: {article.comment_count}</p>
                         <p>Votes: {article.votes}</p>
                         </Link>
