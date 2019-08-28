@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from '@reach/router'
 import * as api from '../utils/api'
+import Spinners from '../utils/spinners';
 
 class Topics extends Component {
     state = {
@@ -9,12 +10,12 @@ class Topics extends Component {
     }
     render() {
         const { isLoading, topics } = this.state
-        if (isLoading) return '...Loading'
+        if (isLoading) return <Spinners />
         return (
             <div className='mainPage'>
                 <h3>Click on a topic to see related articles</h3>
                 {topics.map(topic => {
-                    return <ul key={topic.slug}>
+                    return <ul className='topic' key={topic.slug}>
                         <Link to={`/topics/${topic.slug}`}>
                        <h2>{topic.slug}</h2> 
                         </Link>

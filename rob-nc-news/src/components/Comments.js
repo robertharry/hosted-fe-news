@@ -17,7 +17,7 @@ class Comments extends Component {
                 <h2>Comments for {article.title}</h2>
                 <br></br>
                 {comments.map(comment => {
-                    return <ul key={comment.comment_id}>
+                    return <ul className='indvComment' key={comment.comment_id}>
                     <p>{comment.body}</p>
                     <p>Author: {comment.author}</p>
                     <p>Votes: {comment.votes}</p>

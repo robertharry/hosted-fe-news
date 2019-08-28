@@ -19,7 +19,7 @@ class Articles extends Component {
                 <button name='comment_count' >Number of comments</button>
                 <button name='votes' >Number of votes</button></form>
                 {articles.map(article => {
-                    return <ul key={article.article_id}>
+                    return <ul /*className='indvArticle'*/ key={article.article_id}>
                         <Link to={`/articles/${article.article_id}`}>
                         <p>{article.title}</p>
                         <p>{article.created_at}</p>

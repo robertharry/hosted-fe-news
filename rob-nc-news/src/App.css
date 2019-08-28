@@ -31,6 +31,54 @@
   border-color: black;
   border: 3px 
 }
-.mainPage{
-  /* background-color: aqua */
+.topic{
+  background-color: rgb(226, 162, 43);
+  color: black;
+  padding: 14px 25px;
+  margin: 10px 10px;
+  text-align: center; 
+  text-decoration: none;
+  display: inline-block;
+  
+    -webkit-border-radius: 15px 15px 15px 15px;
+    -moz-border-radius: 15px 15px 15px 15px;
+    border-radius: 15px 15px 15px 15px;
+    border: 3px solid rgb(3, 0, 0);
+    border-radius: 15px 15px 15px 15px;
+    -webkit-box-shadow: 5px 5px 16px 0px rgba(0, 0, 0, 0.46);
+    box-shadow: 5px 5px 16px 0px rgba(0, 0, 0, 0.46);
+}
+.indvArticle{
+  background-color: rgb(226, 162, 43);
+  color: black;
+  padding: 14px 25px;
+  margin: 10px 10px;
+  text-align: center; 
+  text-decoration: none;
+  display: inline-block;
+  
+    -webkit-border-radius: 15px 15px 15px 15px;
+    -moz-border-radius: 15px 15px 15px 15px;
+    border-radius: 15px 15px 15px 15px;
+    border: 3px solid rgb(3, 0, 0);
+    border-radius: 15px 15px 15px 15px;
+    -webkit-box-shadow: 5px 5px 16px 0px rgba(0, 0, 0, 0.46);
+    box-shadow: 5px 5px 16px 0px rgba(0, 0, 0, 0.46);
+}
+.indvComment{
+  background-color: rgb(226, 162, 43);
+  color: black;
+  padding: 14px 25px;
+  margin: 10px 10px;
+  text-align: center; 
+  text-decoration: none;
+  display: inline-block;
+  
+    -webkit-border-radius: 15px 15px 15px 15px;
+    -moz-border-radius: 15px 15px 15px 15px;
+    border-radius: 15px 15px 15px 15px;
+    border: 3px solid rgb(3, 0, 0);
+    border-radius: 15px 15px 15px 15px;
+    -webkit-box-shadow: 5px 5px 16px 0px rgba(0, 0, 0, 0.46);
+    box-shadow: 5px 5px 16px 0px rgba(0, 0, 0, 0.46);
 }

@@ -8,6 +8,7 @@ import Articles from './components/Articles';
 import Topics from './components/Topics';
 import OneArticle from './components/OneArticle'
 import Comments from './components/Comments'
+import Errors from './utils/errors'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Topics path='/topics' />
         <OneArticle path='/articles/:article_id' />
         <Comments path='/comments/:article_id' />
+        <Errors default />
       </Router>
     </div>
   );

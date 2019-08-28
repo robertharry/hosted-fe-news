@@ -11,7 +11,7 @@ class OneArticle extends Component {
         const {isLoading, article} =this.state
         if(isLoading) return <p>Loading</p>
         return (
-            <div>
+            <div className='indvArticle'>
                 <h2>{article.title}</h2>
                 <p>Author: {article.author}</p>
                 <p>Topic: {article.topic}</p>
