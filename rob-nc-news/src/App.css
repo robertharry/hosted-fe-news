@@ -1,8 +1,14 @@
 .App {
   text-align: center;
 }
+.mainPage{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-gap: 1rem;
+}
 .username{
-  text-align: left
+  text-align: left;
+  background-color: rgba(77, 51, 22, 0.329);
 }
 .navbar1{
   display: -webkit-inline-flex;
@@ -57,7 +63,7 @@
   padding: 14px 25px;
   margin: 10px 10px;
   text-align: center; 
-  text-decoration: none;
+  /* text-decoration: none; */
   display: inline-block;
   
     -webkit-border-radius: 15px 15px 15px 15px;
@@ -85,3 +91,4 @@
     -webkit-box-shadow: 5px 5px 16px 0px rgba(0, 0, 0, 0.46);
     box-shadow: 5px 5px 16px 0px rgba(0, 0, 0, 0.46);
 }
+.link { color: black; }

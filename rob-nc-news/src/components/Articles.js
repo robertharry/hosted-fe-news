@@ -20,16 +20,17 @@ class Articles extends Component {
         if (error) return <Errors error={error}/>
         if (isLoading) return <Spinners />
         return (
-            <div className='mainPage'>
+            <>
                 <h2>Click on an article you would like to read...</h2>
                 <form onClick={this.handleClick}> Sort by: 
                 <button  name='created_at'>Date Created</button> 
                 <button name='comment_count' >Number of comments</button>
                 <button name='votes' >Number of votes</button>
                 </form>
+            <div className='mainPage'>
                 {articles.map(article => {
-                    return <ul /*className='indvArticle'*/ key={article.article_id}>
-                        <Link to={`/articles/${article.article_id}`}>
+                    return <ul className='indvArticle' key={article.article_id}>
+                        <Link className='link' to={`/articles/${article.article_id}`}>
                         <p>{article.title}</p>
                         <p>{new Date(article.created_at).toLocaleDateString()}</p>
                         <p>Comments: {article.comment_count}</p>
@@ -40,6 +41,7 @@ class Articles extends Component {
                 <Pages maxPage={maxPage} pageChange={this.pageChange} page={page}/>
                 <br></br>
             </div>
+            </>
         );
     }
     componentDidUpdate(prevProps, prevState) {

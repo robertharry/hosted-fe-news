@@ -3,6 +3,8 @@ import * as api from '../utils/api'
 import Voting from './Voting';
 import Spinners from '../utils/spinners';
 import Errors from '../utils/errors';
+import SubmitForm from './SubmitForm';
+import Pages from './Pages';
 
 
 class Comments extends Component {
@@ -11,25 +13,23 @@ class Comments extends Component {
         isLoading: true,
         comments: null,
         article: null,
+        maxPage:0,
+        page:1,
         error: null
     }
     render() {
-        const { isLoading, comments, article, body, error } = this.state
+        const { isLoading, comments, article, error, body, maxPage, page } = this.state
         const {username} = this.props
         if (error) return <Errors error={error}/>
         if (comments === null || article === null) return <Spinners />
         if (isLoading) return <Spinners />
         return (
-            <div>
-                <h2>Comments for {article.title}</h2>
+            <>
+                <h4 className='indvComment'>Comments for {article.title}</h4>
                 <br></br>
-                <form onSubmit={this.handleSubmit}>
-                    <label>Post a comment as '{username}' here:</label>
-                    <br></br>
-                    <textarea rows="3" cols="50" type="text" name="body" onChange={this.handleChange} value={body}/>
-                    <br></br>
-                    <button className="submit" type="submit" disabled={body.length === 0}> Submit </button>
-                </form>
+                <Pages maxPage={maxPage} pageChange={this.pageChange} page={page}/>
+                <SubmitForm handleSubmit={this.handleSubmit} username={username} handleChange={this.handleChange} body={body}/>
+                <div className="mainPage">
                 {comments.map(comment => {
                     return <ul className='indvComment' key={comment.comment_id}>
                         <p>{comment.body}</p>
@@ -38,8 +38,8 @@ class Comments extends Component {
                         {username === comment.author && <button onClick={() => this.removeComment(comment.comment_id)}>DELETE</button>}
                     </ul>
                 })}
-
             </div>
+            </>
         );
     }
     componentDidMount() {
@@ -49,10 +49,19 @@ class Comments extends Component {
             })
         api.fetchOneArticle(this.props.article_id)
             .then(article => {
-                this.setState({ article, isLoading: false })
+                const maxPage = Math.ceil(article.comment_count/10)
+                this.setState({ article, isLoading: false, maxPage})
             }).catch(error => {
                 this.setState({error})
               })
+    }
+    componentDidUpdate(prevProps, prevState) {
+        if(this.state.page !== prevState.page){
+            api.fetchAllComments(this.props.article_id, this.state.page)
+            .then(comments => {
+                this.setState({ comments, isLoading: false }) 
+            })
+        }
     }
     handleChange = (event) => {
         const { name, value } = event.target;
@@ -83,6 +92,11 @@ class Comments extends Component {
                 })
             })
 
+    }
+    pageChange = (amount) => {
+        this.setState(({page}) => {
+            return {page: page + amount}
+        })
     }
 }
 

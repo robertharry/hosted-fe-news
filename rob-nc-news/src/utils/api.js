@@ -29,8 +29,12 @@ export const fetchOneArticle = (article_id) => {
     })
 }
 
-export const fetchAllComments = (article_id) => {
-    return axios.get(`${baseURL}/articles/${article_id}/comments`)
+export const fetchAllComments = (article_id, page) => {
+    return axios.get(`${baseURL}/articles/${article_id}/comments`, {
+        params:{
+            p:page
+        }
+    })
     .then(({data}) => {
         return data.comments
     })
