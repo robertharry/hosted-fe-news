@@ -2,14 +2,17 @@ import React, { Component } from 'react';
 import { Link } from '@reach/router'
 import * as api from '../utils/api'
 import Spinners from '../utils/spinners';
+import Errors from '../utils/errors';
 
 class Topics extends Component {
     state = {
         isLoading: true,
-        topics: null
+        topics: null,
+        error:null
     }
     render() {
-        const { isLoading, topics } = this.state
+        const { isLoading, topics, error } = this.state
+        if (error) return <Errors error={error}/>
         if (isLoading) return <Spinners />
         return (
             <div className='mainPage'>
@@ -28,6 +31,9 @@ class Topics extends Component {
         api.fetchAllTopics()
             .then(topics => {
                 this.setState({ topics, isLoading: false })
+            }).catch(error => {
+                console.log('topic error')
+                this.setState({error})
             })
     }
 }

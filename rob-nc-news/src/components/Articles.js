@@ -3,6 +3,7 @@ import * as api from '../utils/api'
 import { Link } from '@reach/router'
 import Pages from './Pages';
 import Spinners from '../utils/spinners';
+import Errors from '../utils/errors';
 
 class Articles extends Component {
     state = {
@@ -11,10 +12,12 @@ class Articles extends Component {
         articles: [],
         isLoading: true,
         maxPage:0,
-        page:1
+        page:1,
+        error: null
     }
     render() {
-        const { articles, isLoading, page, maxPage } = this.state
+        const { articles, isLoading, page, maxPage, error } = this.state
+        if (error) return <Errors error={error}/>
         if (isLoading) return <Spinners />
         return (
             <div className='mainPage'>
@@ -54,6 +57,8 @@ class Articles extends Component {
             .then(({articles, total_count}) => {
                 const maxPage = Math.ceil(total_count/10)
                 this.setState({ articles, isLoading: false , maxPage})
+            }).catch(error => {
+                this.setState({error})
             })
     }
     handleClick = (event) => {
