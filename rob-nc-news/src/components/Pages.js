@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
 class Pages extends Component {
-    state = {
-        page: 1
-    }
+    // state = {
+    //     page: 1
+    // }
     render() {
         
         const {maxPage, page, pageChange} = this.props

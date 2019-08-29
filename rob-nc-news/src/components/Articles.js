@@ -70,7 +70,7 @@ class Articles extends Component {
                this.setState({order:'asc'})
            }
        } else {
-           this.setState({sort_by:event.target.name})
+           this.setState({sort_by:event.target.name, page:1})
        }
     }
     pageChange = (amount) => {
