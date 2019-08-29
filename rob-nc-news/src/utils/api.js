@@ -9,15 +9,16 @@ export const fetchAllTopics = () => {
         })
 }
 
-export const fetchAllArticles = (topic, order, sort_by) => {
+export const fetchAllArticles = (topic, order, sort_by, page) => {
     return axios.get(`${baseURL}/articles`, {
         params: {
             topic,
             order,
-            sort_by
+            sort_by,
+            p:page
         }
     }).then(({ data }) => {
-        return data.articles
+        return data
     })
 }
 

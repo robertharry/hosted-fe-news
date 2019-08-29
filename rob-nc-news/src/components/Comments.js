@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import * as api from '../utils/api'
 import Voting from './Voting';
+import Spinners from '../utils/spinners';
+import Errors from '../utils/errors';
 
 
 class Comments extends Component {
@@ -8,20 +10,25 @@ class Comments extends Component {
         body: "",
         isLoading: true,
         comments: null,
-        article: null
+        article: null,
+        error: null
     }
     render() {
-        const { isLoading, comments, article, body } = this.state
+        const { isLoading, comments, article, body, error } = this.state
         const {username} = this.props
-        if (comments === null || article === null) return <p>Loading</p>
-        if (isLoading) return <p>Loading</p>
+        if (error) return <Errors error={error}/>
+        if (comments === null || article === null) return <Spinners />
+        if (isLoading) return <Spinners />
         return (
             <div>
                 <h2>Comments for {article.title}</h2>
                 <br></br>
                 <form onSubmit={this.handleSubmit}>
-                    <label>Post a comment as '{username}' here:<input type="text" name="body" onChange={this.handleChange} value={body}/></label>
-                    <button className="submit" type="submit"> Submit </button>
+                    <label>Post a comment as '{username}' here:</label>
+                    <br></br>
+                    <textarea rows="3" cols="50" type="text" name="body" onChange={this.handleChange} value={body}/>
+                    <br></br>
+                    <button className="submit" type="submit" disabled={body.length === 0}> Submit </button>
                 </form>
                 {comments.map(comment => {
                     return <ul className='indvComment' key={comment.comment_id}>
@@ -43,7 +50,9 @@ class Comments extends Component {
         api.fetchOneArticle(this.props.article_id)
             .then(article => {
                 this.setState({ article, isLoading: false })
-            })
+            }).catch(error => {
+                this.setState({error})
+              })
     }
     handleChange = (event) => {
         const { name, value } = event.target;

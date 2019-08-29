@@ -2,16 +2,20 @@ import React, { Component } from 'react';
 import {Link} from '@reach/router'
 import * as api from '../utils/api'
 import Voting from './Voting';
+import Spinners from '../utils/spinners';
+import Errors from '../utils/errors';
 
 class OneArticle extends Component {
     state = {
         voteChange: 0,
         isLoading: true,
-        article: null
+        article: null,
+        error: null
     }
     render() {
-        const {isLoading, article} =this.state
-        if(isLoading) return <p>Loading</p>
+        const {isLoading, article, error} =this.state
+        if(error) return <Errors error={error}/>
+        if(isLoading) return <Spinners />
         return (
             <div className='indvArticle'>
                 <h2>{article.title}</h2>
@@ -30,6 +34,9 @@ class OneArticle extends Component {
         api.fetchOneArticle(this.props.article_id)
         .then(article => {
             this.setState({article, isLoading:false})
+        })
+        .catch(error => {
+          this.setState({error})
         })
     }
     // handleClick = (event) => {

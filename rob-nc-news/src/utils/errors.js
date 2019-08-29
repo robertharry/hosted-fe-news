@@ -1,6 +1,7 @@
 import React from 'react';
 
-const Errors = () => {
+const Errors = (props) => {
+    console.log(props.error, '<-- this error')
     return (
         <div>
             Page not found!

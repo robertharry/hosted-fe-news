@@ -14,8 +14,8 @@ class Voting extends Component {
             <div>
                 <p>Votes: {votes + voteChange}</p>
                 <form>
-                <button onClick={this.handleClick} value={1} disabled={voteChange === 1}>Like <i className="far fa-thumbs-up"></i></button>
-                <button onClick={this.handleClick} value={-1} disabled={voteChange === -1}>Dislike <i className="far fa-thumbs-down"></i></button>
+                <button onClick={this.handleClick} value={1} disabled={voteChange === 1}>Like</button>
+                <button onClick={this.handleClick} value={-1} disabled={voteChange === -1}>Dislike</button>
                 </form>
             </div>
         );
