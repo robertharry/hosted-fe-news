@@ -23,9 +23,13 @@ class Comments extends Component {
         if (error) return <Errors error={error}/>
         if (comments === null || article === null) return <Spinners />
         if (isLoading) return <Spinners />
+        const articleSnippet = article.body.slice(0,200)
         return (
             <>
-                <h4 className='indvArticle'>Comments for {article.title}</h4>
+            <div className='indvArticle'>
+                <h4>Comments for {article.title} by {article.author}</h4>
+                <p>"{articleSnippet}..."</p>
+            </div>
                 <br></br>
                 <SubmitForm handleSubmit={this.handleSubmit} username={username} handleChange={this.handleChange} body={body}/>
                 <div className="mainPage">
