@@ -1,12 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Pages extends Component {
-    // state = {
-    //     page: 1
-    // }
-    render() {
-        
-        const {maxPage, page, pageChange} = this.props
+const Pages = () => {
+    const {maxPage, page, pageChange} = this.props
         return (
             <div>
                 <span>
@@ -15,7 +10,6 @@ class Pages extends Component {
                 </span>
             </div>
         );
-    }
-}
+};
 
 export default Pages;
