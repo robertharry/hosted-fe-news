@@ -27,7 +27,6 @@ class Comments extends Component {
             <>
                 <h4 className='indvArticle'>Comments for {article.title}</h4>
                 <br></br>
-                <Pages maxPage={maxPage} pageChange={this.pageChange} page={page}/>
                 <SubmitForm handleSubmit={this.handleSubmit} username={username} handleChange={this.handleChange} body={body}/>
                 <div className="mainPage">
                 {comments.map(comment => {
@@ -39,6 +38,7 @@ class Comments extends Component {
                     </ul>
                 })}
             </div>
+                <Pages maxPage={maxPage} pageChange={this.pageChange} page={page}/>
             </>
         );
     }

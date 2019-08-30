@@ -38,9 +38,8 @@ class Articles extends Component {
                         </Link>
                     </ul>
                 })}
-                <Pages maxPage={maxPage} pageChange={this.pageChange} page={page}/>
-                <br></br>
             </div>
+                <Pages maxPage={maxPage} pageChange={this.pageChange} page={page}/>
             </>
         );
     }
