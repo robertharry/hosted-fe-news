@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Link} from '@reach/router';
+import { Link } from '@reach/router';
 import * as api from '../utils/api'
 import Voting from './Voting';
 import Spinners from '../utils/spinners';
@@ -14,37 +14,37 @@ class Comments extends Component {
         isLoading: true,
         comments: null,
         article: null,
-        maxPage:0,
-        page:1,
+        maxPage: 0,
+        page: 1,
         error: null
     }
     render() {
         const { isLoading, comments, article, error, body, maxPage, page } = this.state
-        const {username} = this.props
-        if (error) return <Errors error={error}/>
+        const { username } = this.props
+        if (error) return <Errors error={error} />
         if (comments === null || article === null) return <Spinners />
         if (isLoading) return <Spinners />
-        const articleSnippet = article.body.slice(0,200)
+        const articleSnippet = article.body.slice(0, 200)
         return (
             <>
-            <Link to={`/articles/${article.article_id}`}>
-            <div className='indvArticle'>
-                <h4>Comments for '{article.title}' by '{article.author}'</h4>
-                <p>"{articleSnippet} ..."</p>
-            </div>
-            </Link>
-                <SubmitForm handleSubmit={this.handleSubmit} username={username} handleChange={this.handleChange} body={body}/>
+                <Link to={`/articles/${article.article_id}`}>
+                    <div className='indvArticle'>
+                        <h4>Comments for '{article.title}' by '{article.author}'</h4>
+                        <p>"{articleSnippet} ..."</p>
+                    </div>
+                </Link>
+                <SubmitForm handleSubmit={this.handleSubmit} username={username} handleChange={this.handleChange} body={body} />
                 <div className="mainPage">
-                {comments.map(comment => {
-                    return <ul className='indvComment' key={comment.comment_id}>
-                        <p>{comment.body}</p>
-                        <p>Author: {comment.author}</p>
-                        <Voting votes={comment.votes} comment_id={comment.comment_id}/>
-                        {username === comment.author && <button className="delete" onClick={() => this.removeComment(comment.comment_id)}>DELETE</button>}
-                    </ul>
-                })}
-            </div>
-                <Pages maxPage={maxPage} pageChange={this.pageChange} page={page}/>
+                    {comments.map(comment => {
+                        return <ul className='indvComment' key={comment.comment_id}>
+                            <p>{comment.body}</p>
+                            <p>Author: {comment.author}</p>
+                            <Voting votes={comment.votes} comment_id={comment.comment_id} />
+                            {username === comment.author && <button className="delete" onClick={() => this.removeComment(comment.comment_id)}>DELETE</button>}
+                        </ul>
+                    })}
+                </div>
+                <Pages maxPage={maxPage} pageChange={this.pageChange} page={page} />
             </>
         );
     }
@@ -55,18 +55,20 @@ class Comments extends Component {
             })
         api.fetchOneArticle(this.props.article_id)
             .then(article => {
-                const maxPage = Math.ceil(article.comment_count/10)
-                this.setState({ article, isLoading: false, maxPage})
+                const maxPage = Math.ceil(article.comment_count / 10)
+                this.setState({ article, isLoading: false, maxPage })
             }).catch(error => {
-                this.setState({error})
-              })
+                this.setState({ error })
+            })
     }
     componentDidUpdate(prevProps, prevState) {
-        if(this.state.page !== prevState.page){
+        if (this.state.page !== prevState.page) {
             api.fetchAllComments(this.props.article_id, this.state.page)
-            .then(comments => {
-                this.setState({ comments, isLoading: false }) 
-            })
+                .then(comments => {
+                    this.setState({ comments, isLoading: false })
+                }).catch(error => {
+                    this.setState({error})
+                })
         }
     }
     handleChange = (event) => {
@@ -85,23 +87,26 @@ class Comments extends Component {
                     return {
                         comments: [comment, ...comments],
                         body: ""
-
                     }
                 })
+            }).catch(error => {
+                this.setState({error})
             })
     }
     removeComment = (comment_id) => {
         api.deleteComment(comment_id)
             .then(() => {
-                this.setState(({comments}) => {
-                    return {comments: comments.filter(comment => comment.comment_id !== comment_id)}
+                this.setState(({ comments }) => {
+                    return { comments: comments.filter(comment => comment.comment_id !== comment_id) }
                 })
+            }).catch(error => {
+                this.setState({error})
             })
 
     }
     pageChange = (amount) => {
-        this.setState(({page}) => {
-            return {page: page + amount}
+        this.setState(({ page }) => {
+            return { page: page + amount }
         })
     }
 }

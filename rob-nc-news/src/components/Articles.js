@@ -50,6 +50,8 @@ class Articles extends Component {
             api.fetchAllArticles(topic, order, sort_by, page)
                 .then(({articles}) => {
                     this.setState({ articles, isLoading: false })
+                }).catch(error => {
+                    this.setState({error})
                 })
         }
     }
