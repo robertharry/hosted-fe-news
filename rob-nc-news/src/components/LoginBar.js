@@ -18,3 +18,29 @@ const LoginBar = (props) => {
 };
 
 export default LoginBar;
+
+// import React, { Component } from 'react';
+// import * as api from '../utils/api'
+
+// class LoginBar extends Component {
+//     state={
+//         user:null,
+//         isLoading: true
+//     }
+//     render() {
+//         if(this.state.isLoading) return <p>loading....</p>
+//         return (
+//             <div>
+//                 <img src={this.state.user.avatar_url}></img>
+//             </div>
+//         );
+//     }
+//     componentDidMount(){
+//         api.fetchUserById('jessjelly')
+//         .then(user => {
+//             this.setState({user, isLoading: false})
+//         })
+//     }
+// }
+
+// export default LoginBar;

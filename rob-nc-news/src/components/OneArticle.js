@@ -26,7 +26,7 @@ class OneArticle extends Component {
                 <Voting votes={article.votes} article_id={article.article_id}/>
                 <Link to={`/comments/${article.article_id}`}>See all comments({article.comment_count})</Link>
                 <br></br>
-                <Link className="linkGap" to='/articles'>Back to all articles</Link>
+                <Link to='/articles'>Back to all articles</Link>
             </div>
         );
     }
