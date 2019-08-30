@@ -21,7 +21,7 @@ class App extends React.Component {
       <div className="App">
         <LoginBar handleChange={this.handleChange} username={username} />
         <Header />
-        <Router>
+        <Router className="router">
           <Home path='/' />
           <Articles path='/articles' />
           <Articles path='/topics/:topic' />

@@ -6,6 +6,7 @@ const Errors = (props) => {
     return (
         <div>
             <h2> Error: {status} {msg}</h2>
+            <img className="image" src="https://images.unsplash.com/photo-1521716250348-c4ae4ff1df43?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="burning news"></img>
         </div>
     );
 };

@@ -29,7 +29,7 @@ class Comments extends Component {
             <>
             <Link to={`/articles/${article.article_id}`}>
             <div className='indvArticle'>
-                <h4>Comments for {article.title} by {article.author}</h4>
+                <h4>Comments for '{article.title}' by '{article.author}'</h4>
                 <p>"{articleSnippet} ..."</p>
             </div>
             </Link>
