@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from '@reach/router';
 import * as api from '../utils/api'
 import Voting from './Voting';
 import Spinners from '../utils/spinners';
@@ -26,10 +27,12 @@ class Comments extends Component {
         const articleSnippet = article.body.slice(0,200)
         return (
             <>
+            <Link to={`/articles/${article.article_id}`}>
             <div className='indvArticle'>
                 <h4>Comments for {article.title} by {article.author}</h4>
                 <p>"{articleSnippet} ..."</p>
             </div>
+            </Link>
                 <SubmitForm handleSubmit={this.handleSubmit} username={username} handleChange={this.handleChange} body={body}/>
                 <div className="mainPage">
                 {comments.map(comment => {
