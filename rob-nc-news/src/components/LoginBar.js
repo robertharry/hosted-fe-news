@@ -3,7 +3,7 @@ import React from 'react';
 const LoginBar = (props) => {
     return (
         <>
-            <p className="username"> Logged in as '{props.username}' </p>
+            <p className="usernameLog"> Logged in as '{props.username}' </p>
             <form className="username">
             Choose user from dropdown list:
       <select value={props.username} onChange={props.handleChange}>

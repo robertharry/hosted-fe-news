@@ -3,13 +3,11 @@ import * as api from '../utils/api'
 
 class Voting extends Component {
     state = {
-        article_id: this.props.article_id,
-        comment_id: this.props.comment_id,
-        votes: this.props.votes,
         voteChange: 0
     }
     render() {
-        const {voteChange, votes} = this.state
+        const {voteChange} = this.state
+        const {votes} = this.props
         return (
             <div>
                 <p>Votes: {votes + voteChange}</p>
@@ -23,8 +21,7 @@ class Voting extends Component {
     handleClick = (event) => {
         event.preventDefault()
         const {value} = event.target
-        const {article_id, comment_id} = this.state
-        // console.log(article_id, '<--- article', comment_id, '<-- comment')
+        const {article_id, comment_id} = this.props
         this.setState(({voteChange}) => {
             return {
                 voteChange: voteChange + +value

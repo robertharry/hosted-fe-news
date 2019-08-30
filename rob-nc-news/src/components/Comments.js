@@ -25,7 +25,7 @@ class Comments extends Component {
         if (isLoading) return <Spinners />
         return (
             <>
-                <h4 className='indvComment'>Comments for {article.title}</h4>
+                <h4 className='indvArticle'>Comments for {article.title}</h4>
                 <br></br>
                 <Pages maxPage={maxPage} pageChange={this.pageChange} page={page}/>
                 <SubmitForm handleSubmit={this.handleSubmit} username={username} handleChange={this.handleChange} body={body}/>
