@@ -25,13 +25,13 @@ class OneArticle extends Component {
                 <p>{article.body}</p>
                 <Voting votes={article.votes} article_id={article.article_id}/>
                 <Link to={`/comments/${article.article_id}`}>See all comments({article.comment_count})</Link>
-                <br></br>
-                <Link to='/articles'>Back to all articles&nbsp;</Link>
+                <Link className="linkGap" to='/articles'>Back to all articles</Link>
             </div>
         );
     }
     componentDidMount(){
-        api.fetchOneArticle(this.props.article_id)
+        const {article_id} = this.props
+        api.fetchOneArticle(article_id)
         .then(article => {
             this.setState({article, isLoading:false})
         })
@@ -39,17 +39,6 @@ class OneArticle extends Component {
           this.setState({error})
         })
     }
-    // handleClick = (event) => {
-    //     event.preventDefault()
-    //     const {value} = event.target
-    //     const {article_id} = this.state.article
-    //     this.setState(({voteChange}) => {
-    //         return {
-    //             voteChange: voteChange + +value
-    //         }
-    //     })
-    //     api.patchVote(value, article_id)
-    // }
 }
 
 export default OneArticle;

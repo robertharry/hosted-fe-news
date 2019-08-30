@@ -10,6 +10,7 @@
   width: 500px;
   padding:15px 10px;
   line-height:100%;
+  
 }
 .username{
   text-align: left;
@@ -78,7 +79,6 @@
   padding: 14px 25px;
   margin: 10px 10px;
   text-align: center; 
-  /* text-decoration: none; */
   display: inline-block;
   
     -webkit-border-radius: 15px 15px 15px 15px;
@@ -107,3 +107,34 @@
     box-shadow: 5px 5px 16px 0px rgba(0, 0, 0, 0.46);
 }
 .link { color: black; }
+.linkGap{
+  padding: 30px;
+}
+.like{
+background-color: rgb(68, 180, 68);
+border: 2px solid black;
+border-radius: 5px 5px 5px 5px;
+padding: 0px 5px;
+margin: 2px;
+}
+.dislike{
+background-color: rgb(235, 72, 72);
+border: 2px solid black;
+border-radius: 5px 5px 5px 5px;
+padding: 0px 5px;
+margin: 2px;
+}
+.delete{
+  background-color: rgb(233, 233, 8);
+border: 2px solid black;
+border-radius: 5px 5px 5px 5px;
+padding: 0px 5px;
+margin: 2px;
+}
+.submit{
+  background-color: rgb(68, 180, 68);
+border: 2px solid black;
+border-radius: 5px 5px 5px 5px;
+padding: 0px 5px;
+margin: 2px;
+}

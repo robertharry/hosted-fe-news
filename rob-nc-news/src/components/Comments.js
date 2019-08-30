@@ -28,9 +28,8 @@ class Comments extends Component {
             <>
             <div className='indvArticle'>
                 <h4>Comments for {article.title} by {article.author}</h4>
-                <p>"{articleSnippet}..."</p>
+                <p>"{articleSnippet} ..."</p>
             </div>
-                <br></br>
                 <SubmitForm handleSubmit={this.handleSubmit} username={username} handleChange={this.handleChange} body={body}/>
                 <div className="mainPage">
                 {comments.map(comment => {
@@ -38,7 +37,7 @@ class Comments extends Component {
                         <p>{comment.body}</p>
                         <p>Author: {comment.author}</p>
                         <Voting votes={comment.votes} comment_id={comment.comment_id}/>
-                        {username === comment.author && <button onClick={() => this.removeComment(comment.comment_id)}>DELETE</button>}
+                        {username === comment.author && <button className="delete" onClick={() => this.removeComment(comment.comment_id)}>DELETE</button>}
                     </ul>
                 })}
             </div>

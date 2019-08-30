@@ -15,7 +15,7 @@ export const fetchAllArticles = (topic, order, sort_by, page) => {
             topic,
             order,
             sort_by,
-            p:page
+            p: page
         }
     }).then(({ data }) => {
         return data
@@ -24,29 +24,29 @@ export const fetchAllArticles = (topic, order, sort_by, page) => {
 
 export const fetchOneArticle = (article_id) => {
     return axios.get(`${baseURL}/articles/${article_id}`)
-    .then(({data}) => {
-        return data.article
-    })
+        .then(({ data }) => {
+            return data.article
+        })
 }
 
 export const fetchAllComments = (article_id, page) => {
     return axios.get(`${baseURL}/articles/${article_id}/comments`, {
-        params:{
-            p:page
+        params: {
+            p: page
         }
     })
-    .then(({data}) => {
-        return data.comments
-    })
+        .then(({ data }) => {
+            return data.comments
+        })
 }
 
 export const postComment = (username, body, article_id) => {
     return axios.post(`${baseURL}/articles/${article_id}/comments`, {
         username, body
     })
-    .then(({data}) => {
-        return data.comment
-    })
+        .then(({ data }) => {
+            return data.comment
+        })
 }
 
 export const deleteComment = (comment_id) => {
@@ -57,16 +57,10 @@ export const patchArticleVote = (value, article_id) => {
     return axios.patch(`${baseURL}/articles/${article_id}`, {
         inc_votes: value
     })
-    .then(({data}) => {
-        return data.article
-    }) //needed??
 }
 
 export const patchCommentVote = (value, comment_id) => {
     return axios.patch(`${baseURL}/comments/${comment_id}`, {
         inc_votes: value
     })
-    .then(({data}) => {
-        return data.article
-    }) //needed??
 }

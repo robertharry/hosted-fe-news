@@ -8,24 +8,24 @@ class Topics extends Component {
     state = {
         isLoading: true,
         topics: null,
-        error:null
+        error: null
     }
     render() {
         const { isLoading, topics, error } = this.state
-        if (error) return <Errors error={error}/>
+        if (error) return <Errors error={error} />
         if (isLoading) return <Spinners />
         return (
             <>
                 <h3>Click on a topic to see related articles</h3>
-            <div className='mainPage'>
-                {topics.map(topic => {
-                    return <ul className='topic' key={topic.slug}>
-                        <Link className="link" to={`/topics/${topic.slug}`}>
-                       <h2>{topic.slug}</h2> 
-                        </Link>
-                    </ul>
-                })}
-            </div>
+                <div className='mainPage'>
+                    {topics.map(topic => {
+                        return <ul className='topic' key={topic.slug}>
+                            <Link className="link" to={`/topics/${topic.slug}`}>
+                                <h2>{topic.slug}</h2>
+                            </Link>
+                        </ul>
+                    })}
+                </div>
             </>
         );
     }
@@ -34,8 +34,7 @@ class Topics extends Component {
             .then(topics => {
                 this.setState({ topics, isLoading: false })
             }).catch(error => {
-                console.log('topic error')
-                this.setState({error})
+                this.setState({ error })
             })
     }
 }
