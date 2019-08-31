@@ -39,7 +39,6 @@ class Comments extends Component {
                         return <ul className='indvComment' key={comment.comment_id}>
                             <p>{comment.body}</p>
                             <p>Author: <Link to={`/user/${comment.author}`} >{comment.author}</Link></p> 
-                            <p>Author: {comment.author}</p>
                             <Voting votes={comment.votes} comment_id={comment.comment_id} />
                             {username === comment.author && <button className="delete" onClick={() => this.removeComment(comment.comment_id)}>DELETE</button>}
                         </ul>
