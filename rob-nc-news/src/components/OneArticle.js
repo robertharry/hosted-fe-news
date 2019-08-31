@@ -19,7 +19,7 @@ class OneArticle extends Component {
         return (
             <div className='indvArticle'>
                 <h2>{article.title}</h2>
-                <p>Author: {article.author}</p>
+                <p>Author: <Link to={`/user/${article.author}`} >{article.author}</Link></p> 
                 <p>Topic: {article.topic}</p>
                 <p>Written on: {new Date(article.created_at).toLocaleDateString()}</p>
                 <p>{article.body}</p>

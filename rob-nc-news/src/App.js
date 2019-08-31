@@ -10,6 +10,7 @@ import OneArticle from './components/OneArticle'
 import Comments from './components/Comments'
 import Errors from './utils/errors'
 import LoginBar from './components/LoginBar';
+import User from './components/User'
 
 class App extends React.Component {
   state = {
@@ -28,6 +29,7 @@ class App extends React.Component {
           <Topics path='/topics' />
           <OneArticle path='/articles/:article_id' />
           <Comments path='/comments/:article_id' username={username} />
+          <User path='/user/:user_name' />
           <Errors default />
         </Router>
       </div>

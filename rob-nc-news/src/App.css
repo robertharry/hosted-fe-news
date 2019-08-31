@@ -6,6 +6,10 @@
   max-width: 100%;
   height: auto;
 }
+.smallImage{
+  max-width: 200px;
+  height: auto;
+}
 .mainPage{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -111,6 +115,23 @@
     -webkit-box-shadow: 5px 5px 16px 0px rgba(0, 0, 0, 0.46);
     box-shadow: 5px 5px 16px 0px rgba(0, 0, 0, 0.46);
 }
+.user{
+  background-color: rgb(131, 194, 60);
+  color: black;
+  padding: 14px 25px;
+  margin: 10px 10px;
+  text-align: center; 
+  text-decoration: none;
+  display: inline-block;
+  
+    -webkit-border-radius: 15px 15px 15px 15px;
+    -moz-border-radius: 15px 15px 15px 15px;
+    border-radius: 15px 15px 15px 15px;
+    border: 3px solid rgb(3, 0, 0);
+    border-radius: 15px 15px 15px 15px;
+    -webkit-box-shadow: 5px 5px 16px 0px rgba(0, 0, 0, 0.46);
+    box-shadow: 5px 5px 16px 0px rgba(0, 0, 0, 0.46);
+}
 .link { color: black; }
 .linkGap{
   padding: 30px;
@@ -138,6 +159,13 @@ margin: 2px;
 }
 .submit{
   background-color: rgb(68, 180, 68);
+border: 2px solid black;
+border-radius: 5px 5px 5px 5px;
+padding: 0px 5px;
+margin: 2px;
+}
+.back{
+  background-color: rgb(226, 162, 43);
 border: 2px solid black;
 border-radius: 5px 5px 5px 5px;
 padding: 0px 5px;

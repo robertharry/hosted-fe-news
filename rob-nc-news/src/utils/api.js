@@ -64,6 +64,7 @@ export const patchCommentVote = (value, comment_id) => {
         inc_votes: value
     })
 }
+
 export const fetchUserById = (username) => {
     return axios.get(`${baseURL}/users/${username}`)
     .then(({data}) => {
