@@ -71,3 +71,10 @@ export const fetchUserById = (username) => {
         return data.user
     })
 }
+
+export const fetchAllUsers = () => {
+    return axios.get(`${baseURL}/users`)
+    .then(({data}) => {
+        return data.users
+    })
+}

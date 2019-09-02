@@ -22,7 +22,7 @@ class OneArticle extends Component {
                 <p>Author: <Link to={`/user/${article.author}`} >{article.author}</Link></p> 
                 <p>Topic: {article.topic}</p>
                 <p>Written on: {new Date(article.created_at).toLocaleDateString()}</p>
-                <p>{article.body}</p>
+                <p className="articleFontSize">{article.body}</p>
                 <Voting votes={article.votes} article_id={article.article_id}/>
                 <Link to={`/comments/${article.article_id}`}>See all comments({article.comment_count})</Link>
                 <br></br>
