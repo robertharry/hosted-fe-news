@@ -29,7 +29,7 @@ class App extends React.Component {
           <Topics path='/topics' />
           <OneArticle path='/articles/:article_id' />
           <Comments path='/comments/:article_id' username={username} />
-          <User path='/user/:user_name' />
+          <User path='/user/:user_name' username={username} />
           <Errors default />
         </Router>
       </div>
