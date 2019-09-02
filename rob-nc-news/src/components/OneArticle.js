@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Link} from '@reach/router'
+import {Link, navigate} from '@reach/router'
 import * as api from '../utils/api'
 import Voting from './Voting';
 import Spinners from '../utils/spinners';
@@ -15,7 +15,6 @@ class OneArticle extends Component {
     }
     render() {
         const {isLoading, article, error} =this.state
-        if(article === "deleted") return <><h2>Deleted!</h2><Link to='/articles'>Back to all articles</Link></>
         if(error) return <Errors error={error}/>
         if(isLoading) return <Spinners />
         return (
@@ -48,7 +47,7 @@ class OneArticle extends Component {
        api.deleteArticle(article_id)
        .then(() => {
            this.setState(({article}) => {
-               return {article:'deleted'}
+               navigate('/articles')
            })
        }).catch(error => {
         this.setState({error})
