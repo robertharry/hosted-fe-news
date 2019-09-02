@@ -1,10 +1,11 @@
 import React from 'react';
+import {Link} from '@reach/router';
 
 const LoginBar = (props) => {
     const { username, handleChange } = props
     return (
         <>
-            <p className="usernameLog"> Logged in as '{username}' </p>
+        <p className="usernameLog">Logged in as: <Link to={`/user/${username}`} >{username}</Link></p> 
             <form className="username">
                 Choose user from dropdown list:
       <select value={username} onChange={handleChange}>
