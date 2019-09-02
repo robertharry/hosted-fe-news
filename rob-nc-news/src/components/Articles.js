@@ -4,9 +4,13 @@ import { Link } from '@reach/router'
 import Pages from './Pages';
 import Spinners from '../utils/spinners';
 import Errors from '../utils/errors';
+import SubmitArticle from './SubmitArticle'
 
 class Articles extends Component {
     state = {
+        body:'',
+        title:'',
+        topic:'',
         sort_by: '',
         order: 'desc',
         articles: [],
@@ -16,12 +20,14 @@ class Articles extends Component {
         error: null
     }
     render() {
-        const { articles, isLoading, page, maxPage, error } = this.state
+        const { articles, isLoading, page, maxPage, error, body, title, topic } = this.state
+        const {username} = this.props
         if (error) return <Errors error={error}/>
         if (isLoading) return <Spinners />
         return (
             <>
-                <h2>Click on an article you would like to read...</h2>
+                <h2>Click on an article you would like to read or post your own below...</h2>
+                <SubmitArticle handleSubmit={this.handleSubmit} username={username} handleChange={this.handleChange} body={body} title={title} topic={topic} />
                 <form onClick={this.handleClick}> Sort by: 
                 <button  name='created_at'>Date Created</button> 
                 <button name='comment_count' >Number of comments</button>
@@ -80,6 +86,30 @@ class Articles extends Component {
         this.setState(({page}) => {
             return {page: page + amount}
         })
+    }
+    handleChange = (event) => {
+        const { name, value } = event.target;
+        this.setState({
+            [name]: value
+        });
+    }
+    handleSubmit = (event) => {
+        event.preventDefault()
+        const { body, title, topic } = this.state
+        const { username,} = this.props
+        api.postArticle(body, username, title, topic)
+            .then(article => {
+                this.setState(({ articles }) => {
+                    return {
+                        articles: [article, ...articles],
+                        body: "",
+                        title: "",
+                        topic: ""
+                    }
+                })
+            }).catch(error => {
+                this.setState({error})
+            })
     }
 }
 

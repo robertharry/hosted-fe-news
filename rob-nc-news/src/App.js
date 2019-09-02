@@ -24,8 +24,8 @@ class App extends React.Component {
         <Header />
         <Router className="router">
           <Home path='/' />
-          <Articles path='/articles' />
-          <Articles path='/topics/:topic' />
+          <Articles path='/articles' username={username}/>
+          <Articles path='/topics/:topic' username={username}/>
           <Topics path='/topics' />
           <OneArticle path='/articles/:article_id' />
           <Comments path='/comments/:article_id' username={username} />

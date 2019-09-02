@@ -49,6 +49,15 @@ export const postComment = (username, body, article_id) => {
         })
 }
 
+export const postArticle = (body, author, title, topic) => {
+    return axios.post(`${baseURL}/articles`, {
+        body, author, title, topic
+    })
+    .then(({data}) => {
+        return data.article
+    })
+}
+
 export const deleteComment = (comment_id) => {
     return axios.delete(`${baseURL}/comments/${comment_id}`)
 }
