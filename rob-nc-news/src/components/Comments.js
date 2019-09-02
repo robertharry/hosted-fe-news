@@ -38,7 +38,7 @@ class Comments extends Component {
                     {comments.map(comment => {
                         return <ul className='indvComment' key={comment.comment_id}>
                             <p>{comment.body}</p>
-                            <p>Author: <Link to={`/user/${comment.author}`} >{comment.author}</Link></p> 
+                            <p>Author: <Link to={`/user/${comment.author}`} >{comment.author}</Link></p>
                             <Voting votes={comment.votes} comment_id={comment.comment_id} />
                             {username === comment.author && <button className="delete" onClick={() => this.removeComment(comment.comment_id)}>DELETE</button>}
                         </ul>
@@ -67,7 +67,7 @@ class Comments extends Component {
                 .then(comments => {
                     this.setState({ comments, isLoading: false })
                 }).catch(error => {
-                    this.setState({error})
+                    this.setState({ error })
                 })
         }
     }
@@ -90,7 +90,7 @@ class Comments extends Component {
                     }
                 })
             }).catch(error => {
-                this.setState({error})
+                this.setState({ error })
             })
     }
     removeComment = (comment_id) => {
@@ -100,7 +100,7 @@ class Comments extends Component {
                     return { comments: comments.filter(comment => comment.comment_id !== comment_id) }
                 })
             }).catch(error => {
-                this.setState({error})
+                this.setState({ error })
             })
 
     }

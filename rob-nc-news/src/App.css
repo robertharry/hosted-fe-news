@@ -37,6 +37,13 @@
   margin-bottom: 5px;
   padding: 10px;
 }
+.pageButton{
+  background-color: rgb(43, 168, 226);
+  border: 2px solid black;
+  border-radius: 5px 5px 5px 5px;
+  padding: 0px 5px;
+  margin: 2px;
+}
 .navbar1{
   display: -webkit-inline-flex;
   flex-direction: row;
@@ -168,6 +175,13 @@ margin: 2px;
 }
 .back{
   background-color: rgb(226, 162, 43);
+border: 2px solid black;
+border-radius: 5px 5px 5px 5px;
+padding: 0px 5px;
+margin: 2px;
+}
+.sort{
+  background-color: rgb(226, 101, 43);
 border: 2px solid black;
 border-radius: 5px 5px 5px 5px;
 padding: 0px 5px;
