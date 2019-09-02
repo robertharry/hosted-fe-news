@@ -41,17 +41,3 @@ class LoginBar extends Component {
 };
 
 export default LoginBar;
-
-// import React, { Component } from 'react';
-
-// class LoginBar extends Component {
-//     render() {
-//         return (
-//             <div>
-                
-//             </div>
-//         );
-//     }
-// }
-
-// export default LoginBar;
