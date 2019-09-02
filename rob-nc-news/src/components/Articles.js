@@ -10,7 +10,7 @@ class Articles extends Component {
     state = {
         body:'',
         title:'',
-        topic:'',
+        topic:'football',
         sort_by: '',
         order: 'desc',
         articles: [],

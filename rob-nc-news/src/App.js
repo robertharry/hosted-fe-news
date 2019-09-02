@@ -27,7 +27,7 @@ class App extends React.Component {
           <Articles path='/articles' username={username}/>
           <Articles path='/topics/:topic' username={username}/>
           <Topics path='/topics' />
-          <OneArticle path='/articles/:article_id' />
+          <OneArticle path='/articles/:article_id' username={username}/>
           <Comments path='/comments/:article_id' username={username} />
           <User path='/user/:user_name' username={username} />
           <Errors default />

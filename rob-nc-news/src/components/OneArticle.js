@@ -4,6 +4,7 @@ import * as api from '../utils/api'
 import Voting from './Voting';
 import Spinners from '../utils/spinners';
 import Errors from '../utils/errors';
+// import Articles from './Articles';
 
 class OneArticle extends Component {
     state = {
@@ -14,6 +15,7 @@ class OneArticle extends Component {
     }
     render() {
         const {isLoading, article, error} =this.state
+        if(article === "deleted") return <><h2>Deleted!</h2><Link to='/articles'>Back to all articles</Link></>
         if(error) return <Errors error={error}/>
         if(isLoading) return <Spinners />
         return (
@@ -24,6 +26,8 @@ class OneArticle extends Component {
                 <p>Written on: {new Date(article.created_at).toLocaleDateString()}</p>
                 <p className="articleFontSize">{article.body}</p>
                 <Voting votes={article.votes} article_id={article.article_id}/>
+                {this.props.username === article.author && <button className="delete" onClick={() => this.removeArticle(article.article_id)}>DELETE</button>}
+                <br></br>
                 <Link to={`/comments/${article.article_id}`}>See all comments({article.comment_count})</Link>
                 <br></br>
                 <Link to='/articles'>Back to all articles</Link>
@@ -39,6 +43,16 @@ class OneArticle extends Component {
         .catch(error => {
           this.setState({error})
         })
+    }
+    removeArticle(article_id){
+       api.deleteArticle(article_id)
+       .then(() => {
+           this.setState(({article}) => {
+               return {article:'deleted'}
+           })
+       }).catch(error => {
+        this.setState({error})
+    })
     }
 }
 

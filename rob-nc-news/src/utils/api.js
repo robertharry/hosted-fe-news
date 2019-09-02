@@ -62,6 +62,10 @@ export const deleteComment = (comment_id) => {
     return axios.delete(`${baseURL}/comments/${comment_id}`)
 }
 
+export const deleteArticle = (article_id) => {
+    return axios.delete(`${baseURL}/articles/${article_id}`)
+}
+
 export const patchArticleVote = (value, article_id) => {
     return axios.patch(`${baseURL}/articles/${article_id}`, {
         inc_votes: value
