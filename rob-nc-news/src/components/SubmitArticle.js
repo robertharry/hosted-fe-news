@@ -12,6 +12,7 @@ const SubmitArticle = ({username, body, handleChange, handleSubmit, title, topic
                         <option>cooking</option>
                         <option>coding</option>
                     </select>
+                    <br></br>
                     <input className="inputBox" type="text" name="title" value={title} onChange={handleChange} placeholder="Title..." ></input>
                     <br></br>
                     <input className="inputBox" type="text" name="body" value={body} onChange={handleChange} placeholder="Enter article body here..." ></input>
