@@ -22,6 +22,7 @@ class Topics extends Component {
                         return <ul className='topic' key={topic.slug}>
                             <Link className="link" to={`/topics/${topic.slug}`}>
                                 <h2>{topic.slug}</h2>
+                                <h4>{topic.description}</h4>
                             </Link>
                         </ul>
                     })}
